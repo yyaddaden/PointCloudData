@@ -88,7 +88,8 @@ class PointCloudData():
 
     def compute_gps_obj_data(self):
 
-        print("Generating point cloud (LiDAR) with localization (gps) data ... ", end="", flush=True)
+        print("Generating point cloud (LiDAR) with localization (gps) data ... ",
+              end="", flush=True)
 
         for time_obj_elt in self.time_obj_data:
 
@@ -103,7 +104,7 @@ class PointCloudData():
                                       ["latitude"], "longitude": self.time_gps_data[elt_idx]["longitude"]})
 
         print("[\u2713]")
-    
+
     def compute_files_per_zone(self):
         print("Dividing the route path into zones ... ", end="", flush=True)
 
@@ -125,7 +126,8 @@ class PointCloudData():
         print("[\u2713]")
 
     def export_pcd_data(self):
-        print("Converting & exporting point cloud (LiDAR) data to .pcd ... ", end="", flush=True)
+        print("Converting & exporting point cloud (LiDAR) data to .pcd ... ",
+              end="", flush=True)
 
         if(not os.path.exists(self.out_path)):
             os.mkdir(self.out_path)
@@ -139,7 +141,8 @@ class PointCloudData():
                 obj_data = []
                 for line in obj_file:
                     if(line[0] == "v"):
-                        obj_data.append([float(elt) for elt in line[2:].split()])
+                        obj_data.append([float(elt)
+                                         for elt in line[2:].split()])
 
                 pcd = open3d.geometry.PointCloud()
                 pcd.points = open3d.utility.Vector3dVector(np.array(obj_data))

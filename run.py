@@ -12,17 +12,18 @@ if __name__ == "__main__":
 
     path_start = {"latitude": "46.77654", "longitude": "-71.27184"}
     path_end = {"latitude": "46.813508", "longitude": "-71.2053822"}
-    zone_perimeter = 100 # in meters
+    zone_perimeter = 100  # in meters
 
     # processing
-    pointCloudData = PointCloudData(in_path, path_start, zone_perimeter, path_end, out_path)
-    # importing the localization (gps) data associated with datetime 
+    pointCloudData = PointCloudData(
+        in_path, path_start, zone_perimeter, path_end, out_path)
+    # importing the localization (gps) data associated with datetime
     pointCloudData.import_gps_data()
-    # importing the point cloud (LiDAR) data associated with datetime 
+    # importing the point cloud (LiDAR) data associated with datetime
     pointCloudData.import_obj_data()
     # generate the point cloud (LiDAR) data with localization (gps) data
     pointCloudData.compute_gps_obj_data()
-    # divide the route path into zones 
+    # divide the route path into zones
     pointCloudData.compute_files_per_zone()
     # convert and save the point cloud (LiDAR) data in .pcd
     pointCloudData.export_pcd_data()
